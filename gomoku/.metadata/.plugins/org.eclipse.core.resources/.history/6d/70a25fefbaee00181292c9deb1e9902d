@@ -1,0 +1,58 @@
+package ca.uqac.gomoku.aspects;
+
+import java.lang.reflect.Method;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import ca.uqac.gomoku.core.Player;
+import ca.uqac.gomoku.core.model.Spot;
+import ca.uqac.gomoku.ui.Board;
+import javafx.scene.canvas.GraphicsContext;
+import ca.uqac.gomoku.core.model.Grid;
+
+public aspect FinJeu {
+	
+	boolean ended = false;
+	List<Spot> winningStones;
+	GraphicsContext gc;
+
+	pointcut getBoard(Board b) : target(Board);
+	
+	pointcut gameFinished(Player winner) : execution(void gameOver(Player)) && args(winner);
+	
+	pointcut playing() : call(void placeStone(int, int, Player));
+	
+	pointcut winningStonesChange(List<Spot> newWinningStones) : set(List<Spot> Grid.winningStones)  && args(newWinningStones);
+	
+	after(Board b) : getBoard(b) {
+		gc = b.getGraphicsContext2D();
+		JOptionPane.showMessageDialog(null, "bingoooo! the wins", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	after(List<Spot> newWinningStones) : winningStonesChange(newWinningStones) {
+		winningStones = newWinningStones;
+		if(!winningStones.isEmpty() && gc != null)
+		{
+		}
+	}
+	
+	after(Player winner) : gameFinished(winner) {
+		ended = true;
+		new Thread(()-> { 
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "bingoooo! the " + winner.getName() + " wins", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
+			}).start();
+		
+	}
+	
+	void around() : playing() {
+		if(!ended)
+		{
+			proceed();
+		}
+	}
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="ca.uqac.gomoku.core.model.Spot"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="ca.uqac.gomoku.ui.Board"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Method"/>
+<fullyQualifiedTypeName name="javafx.scene.canvas.GraphicsContext"/>
+<fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
+</qualifiedTypeNameHistroy>

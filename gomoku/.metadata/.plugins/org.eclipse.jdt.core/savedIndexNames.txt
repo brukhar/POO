@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+D:\Mes Documents\Cours Chicoutimi\POO\ca\uqac\gomoku\.metadata\.plugins\org.eclipse.jdt.core
+3512584805.index
+2899599247.index
